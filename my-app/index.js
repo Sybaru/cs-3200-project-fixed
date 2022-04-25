@@ -23,7 +23,7 @@ const db = mysql.createConnection({
     user: "root",
     host: "localhost",
     password: "password",
-    database: "test",
+    database: "songdb",
 });
 
 app.listen(3001, () =>  {
@@ -65,22 +65,11 @@ app.post('/login', (req, res)=> {
     );
 });
 
-app.post("/search", (req, res) => {
-    const search = req.body.search;
-    db.query(
-        "SELECT * FROM users WHERE email = ?",
-        [search],
-        (err, result) => {
-            console.log(result);
-        }
-    );
-});
-
 app.post("/all", (req, res) => {
     db.query(
-        "SELECT * FROM users",
+        "SELECT * FROM song as s JOIN record_label as r ON r.label_id = s.record_label JOIN artist as a ON a.artist_id = s.artist_id",
         (err, result) => {
-            if (err) throw err;
+            if (err) console.log(err);
             console.log(result);
             res.send(result);
         }

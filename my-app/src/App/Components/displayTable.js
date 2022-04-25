@@ -49,9 +49,11 @@ export default function Table() {
     const [errorMessages, setErrorMessages] = useState([])
 
     const columns = [
-      { title: "ID", field: "id" },
-      { title: "Email", field: "email" },
-      { title: "Password", field: "password" },
+      { title: "Song", field: "song_name" },
+      { title: "Genre", field: "genre" },
+      { title: "Duration", field: "song_length" },
+      { title: "Artist", field: "artist_name" },
+      { title: "Record Label", field: "label_name"},
      
     ]
 
@@ -64,20 +66,14 @@ export default function Table() {
     }, [])
 
   return (
-    <div className="App">
+    <div className="table">
       
-      <Grid container spacing={1}>
-          <Grid item xs={3}></Grid>
-          <Grid item xs={6}>
-            <MaterialTable
+      <MaterialTable
               title="Songs"
               columns={columns}
               data={data}
               icons={tableIcons}
             />
-          </Grid>
-          <Grid item xs={3}></Grid>
-        </Grid>
     </div>
   );
 }
