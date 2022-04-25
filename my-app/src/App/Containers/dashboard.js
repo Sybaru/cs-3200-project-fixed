@@ -137,7 +137,17 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
-          <DisplayTable />
+          <Container sx={{ mt: 4, mb: 4 }}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                  }}
+                >
+                  <DisplayTable />
+                </Paper>
+          </Container>
         </Box>
       </Box>
     </ThemeProvider>
