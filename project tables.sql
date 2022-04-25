@@ -5,20 +5,20 @@ use songDB;
 
 DROP TABLE IF EXISTS streaming_platform;
 create table streaming_platform (
-	platform_id int PRIMARY KEY,
+	platform_id int PRIMARY KEY AUTO_INCREMENT,
     platform_name varchar(100)
 );
 
 DROP TABLE IF EXISTS list_of_playlists;
 create table list_of_playlists (
-	list_id int primary key,
+	list_id int primary key AUTO_INCREMENT,
     playlist_title varchar(50),
     userName varchar(20)
 );
 
 DROP TABLE IF EXISTS individual_playlist;
 create table individual_playlist (
-	indiv_playlist_id int primary key,
+	indiv_playlist_id int primary key AUTO_INCREMENT,
     song_id int,
     list_playlist_id int not null,
     
@@ -29,13 +29,13 @@ create table individual_playlist (
 
 DROP TABLE IF EXISTS song;
 create table song (
-	song_id int PRIMARY KEY,
+	song_id int PRIMARY KEY AUTO_INCREMENT,
     song_name varchar(100),
     genre varchar(100), 
     song_length time,
     album_name varchar(100),
-    streaming_platform int not null,
-    playlist_id int not null,
+    streaming_platform int,
+    playlist_id int,
     
     CONSTRAINT published_on FOREIGN KEY (streaming_platform) references streaming_platform(platform_id)
 		ON UPDATE CASCADE
@@ -49,7 +49,7 @@ create table song (
 
 DROP TABLE IF EXISTS artist;
 create table artist (
-	artist_id int PRIMARY KEY,
+	artist_id int PRIMARY KEY AUTO_INCREMENT,
     artist_name varchar(100),
     song int not null,
     
@@ -60,7 +60,7 @@ create table artist (
 
 DROP TABLE IF EXISTS record_label;
 create table record_label (
-	label_id int PRIMARY KEY,
+	label_id int PRIMARY KEY AUTO_INCREMENT,
     label_name varchar(100),
     song int not null,
     artist int not null,
@@ -75,7 +75,7 @@ create table record_label (
 
 DROP TABLE IF EXISTS ranking;
 create table ranking (
-	ranking int PRIMARY KEY,
+	ranking int PRIMARY KEY AUTO_INCREMENT,
     year_in_top_100 int,
     song int not null,
     
@@ -87,9 +87,9 @@ create table ranking (
 
 DROP TABLE IF EXISTS userTable;
 create table userTable (
+	userId int PRIMARY KEY AUTO_INCREMENT,
 	userName varchar(20),
-    userPassword varchar(20),
-    userType varchar(20) -- determines if the user is a manger or regular user 
+    userPassword varchar(20)
     
 );
 
