@@ -14,7 +14,7 @@ import Paper from '@mui/material/Paper';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { mainListItems, secondaryListItems } from '../Components/listItems';
-import DisplayTable from '../Components/displayTable';
+import MyPlaylist from '../Components/myplaylist';
 import axios, { Axios } from 'axios';
 
 const drawerWidth = 240;
@@ -64,6 +64,15 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 const mdTheme = createTheme();
+
+window.onload = function() {
+  axios.post('http://localhost:3001/checkLogin')
+  .then((response) => {
+    console.log(response.data);
+  if (!response.data && window.location.href != '/') {
+    window.location.href = '/'
+  }});
+}
 
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
@@ -145,7 +154,7 @@ function DashboardContent() {
                     flexDirection: 'column',
                   }}
                 >
-                  <DisplayTable />
+                  <MyPlaylist />
                 </Paper>
           </Container>
         </Box>

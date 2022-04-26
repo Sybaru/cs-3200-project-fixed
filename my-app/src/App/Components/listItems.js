@@ -12,13 +12,13 @@ import SearchIcon from '@mui/icons-material/Search';
 
 export const mainListItems = (
   <React.Fragment>
-    <ListItemButton>
+    <ListItemButton button component="a" href='/main'>
       <ListItemIcon>
         <SearchIcon />
       </ListItemIcon>
       <ListItemText primary="Search All Songs" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton button component="a" href='/MyPlaylists'>
       <ListItemIcon>
         <PlaylistAddIcon />
       </ListItemIcon>

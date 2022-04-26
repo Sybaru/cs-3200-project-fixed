@@ -21,6 +21,8 @@ const [password, setpassword] = React.useState("");
 
 const [loginStatus, setLoginStatus] = React.useState("");
 
+window.onload = function() {}
+
 const login = () => {
   axios.post('http://localhost:3001/login', {
     username: username,
@@ -30,6 +32,7 @@ const login = () => {
   if (response.data.message) {
     setLoginStatus(response.data.message); 
   } else if (response.data){
+    window.user = response;
     window.location.href = '/main';
   }
 });
