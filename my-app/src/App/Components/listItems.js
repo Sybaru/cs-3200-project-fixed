@@ -4,10 +4,10 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import ListIcon from '@mui/icons-material/List';
-import LayersIcon from '@mui/icons-material/Layers';
+import QueueMusicIcon from '@mui/icons-material/QueueMusic';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import CreateIcon from '@mui/icons-material/Create';
-import AddIcon from '@mui/icons-material/Add';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import SearchIcon from '@mui/icons-material/Search';
 
 export const mainListItems = (
@@ -20,7 +20,7 @@ export const mainListItems = (
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
-        <AddIcon />
+        <PlaylistAddIcon />
       </ListItemIcon>
       <ListItemText primary="Create Playlist" />
     </ListItemButton>
@@ -34,13 +34,13 @@ export const mainListItems = (
       <ListItemIcon>
         <ListIcon />
       </ListItemIcon>
-      <ListItemText primary="View playlists" />
+      <ListItemText primary="My playlists" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
-        <LayersIcon />
+        <QueueMusicIcon />
       </ListItemIcon>
-      <ListItemText primary="Integrations" />
+      <ListItemText primary="All playlists" />
     </ListItemButton>
   </React.Fragment>
 );
