@@ -30,11 +30,11 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Edit playlists" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton button component="a" href='/ViewAllLists'>
       <ListItemIcon>
         <ListIcon />
       </ListItemIcon>
-      <ListItemText primary="My playlists" />
+      <ListItemText primary="All playlists" />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>

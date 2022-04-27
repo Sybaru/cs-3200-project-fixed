@@ -120,8 +120,8 @@ app.post("/deleteList", (req, res)=> {
     const playlistId = req.body.playlistId;
 
     db.query(
-        "DELETE FROM list_of_playlists WHERE UserID = ? AND playlistId = ?",
-        [playlistId, getUser()],
+        "DELETE FROM list_of_playlists WHERE UserID = ? AND list_Id = ?",
+        [getUser(), playlistId],
         (err, result) => {
             if (err) {
               res.send({err: err});
@@ -151,7 +151,6 @@ app.post("/indivList", (req, res) => {
         [playlistId],
         (err, result) => {
             if (err) console.log(err);
-            console.log(result);
             res.send(result);
         }
     );
@@ -180,6 +179,19 @@ app.post("/deleteSong", (req, res)=> {
     db.query(
         "DELETE FROM individual_playlist WHERE song_id = ? AND list_playlist_id = ?",
         [songId, playlistId],
+        (err, result) => {
+            if (err) {
+              res.send({err: err});
+            } 
+            res.send(result);
+        }
+    );
+});
+
+app.post("/allLists", (req, res)=> {
+
+    db.query(
+        "SELECT list_id, playlist_title, userName FROM list_of_playlists as l JOIN users as u on u.userId = l.userID",
         (err, result) => {
             if (err) {
               res.send({err: err});

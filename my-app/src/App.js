@@ -5,6 +5,7 @@ import Signup from "./App/Containers/signup"
 import MainPage from "./App/Containers/dashboard"
 import MyPlaylists from './App/Containers/playlistview.js'
 import EditPlaylists from './App/Containers/playlistedit.js'
+import ViewAll from './App/Containers/playlistviewall'
 
 
 export default class App extends React.Component {
@@ -17,6 +18,7 @@ export default class App extends React.Component {
         <Route path="main" element={<Mainfunc />} />
         <Route path="MyPlaylists" element={<MyPlaylist />} />
         <Route path="EditPlaylists" element={<EditPlaylist />} />
+        <Route path="ViewAllLists" element={<ViewAllFunc />} />
       </Routes>
     </div>
         )
@@ -52,5 +54,12 @@ function EditPlaylist() {
   return (
     <EditPlaylists>
     </EditPlaylists>
+  )
+} 
+
+function ViewAllFunc() {
+  return (
+    <ViewAll>      
+    </ViewAll>
   )
 } 

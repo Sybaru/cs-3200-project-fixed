@@ -20,6 +20,7 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import axios from 'axios'
 import Alert from '@material-ui/lab/Alert';
+import { Co2Sharp } from '@mui/icons-material';
 
 
 const tableIcons = {
@@ -42,14 +43,14 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
   };
 
-var currPlaylist = 0;
+var currlist = 0;
 
-function setCurr(value) {
-  currPlaylist = value;
+function setCurrList(value) {
+  currlist = value;
 }
 
-function getCurr() {
-  return currPlaylist
+function getCurrList() {
+  return currlist
 }
 
 function MyPlaylists() {
@@ -57,6 +58,7 @@ function MyPlaylists() {
   var columns = [
     {title: "Playlist id", field: "list_id", hidden: true},
     {title: "Playlist name", field: "playlist_title"},
+    {title: "Creator", field: "userName"},
   ]
   const [data, setData] = useState([]); //table data
 
@@ -70,16 +72,6 @@ function MyPlaylists() {
   ]
   const [dataIndiv, setDataIndiv] = useState([]); //PLaylist data
 
-  var columnsSongs = [
-    { title: "Song Id", field: "song_id", hidden: true},
-    { title: "Song", field: "song_name" },
-    { title: "Genre", field: "genre" },
-    { title: "Duration", field: "song_length" },
-    { title: "Artist", field: "artist_name" },
-    { title: "Record Label", field: "label_name"},
-  ]
-  const [dataSongs, setDataSongs] = useState([]); //PLaylist data
-
   //for error handling
   const [iserror, setIserror] = useState(false)
   const [errorMessages, setErrorMessages] = useState([])
@@ -87,45 +79,21 @@ function MyPlaylists() {
   const [listName, setName] = useState([]); //PLaylist name
 
   useEffect(() => {
-    axios.post('http://localhost:3001/allMy'
+    axios.post('http://localhost:3001/allLists'
     ).then(response => {
         setData(response.data)
     }).catch(error=>{
         console.log(error)
     })
     axios.post('http://localhost:3001/indivList', {
-        playlistId: getCurr(),
+        playlistId: getCurrList(),
        }).then(response => {
          setDataIndiv(response.data)
         }).catch(error=>{
           console.log(error)
         })
-    axios.post('http://localhost:3001/all').then(response => {
-          setDataSongs(response.data)
-      }).catch(error=>{
-          console.log(error)
-      })
     setName("No Playlist selected")  
   }, [])
-
-  const handleRowDelete = (oldData, resolve) => {
-    
-    axios.post('http://localhost:3001/deleteSong', {
-        playlistId: getCurr(),
-        songId: oldData.song_id,
-      }).then(res => {
-        const dataDelete = [...dataIndiv];
-        const index = oldData.tableData.id;
-        dataDelete.splice(index, 1);
-        setDataIndiv([...dataDelete]);
-        resolve()
-      })
-      .catch(error => {
-        setErrorMessages(["Delete failed! Server error"])
-        setIserror(true)
-        resolve()
-      })
-  }
 
 
   return (
@@ -134,19 +102,21 @@ function MyPlaylists() {
       <Grid container spacing={1}>
           <Grid item xs={12}>
             <MaterialTable
-              title="Playlists"
+              title="All Playlists"
               columns={columns}
               data={data}
               icons={tableIcons}
               actions={[
                 {
-                icon: Edit,
-                tooltip: 'Edit Playlist',
+                icon: Search,
+                tooltip: 'View Playlist',
                 onClick: (event, rowData) => {
-                  setCurr(rowData.list_id);
+                  console.log(rowData);
+                  setCurrList(rowData.list_id);
                   axios.post('http://localhost:3001/indivList', {
-                    playlistId: getCurr(),
+                    playlistId: getCurrList(),
                   }).then(response => {
+                    console.log(response);
                     setDataIndiv(response.data)
                     setName("Current Playlist: " + rowData.playlist_title)
                   }).catch(error=>{
@@ -163,43 +133,9 @@ function MyPlaylists() {
               columns={columnsIndiv}
               data={dataIndiv}
               icons={tableIcons}
-              editable={{
-                onRowDelete: (oldData) =>
-                  new Promise((resolve) => {
-                    handleRowDelete(oldData, resolve)
-                  }),
-              }}
             />
           </Grid>
-          <Grid item xs={12}>
-          <MaterialTable
-              title="Add Songs to Current Playlist"
-              columns={columnsSongs}
-              data={dataSongs}
-              icons={tableIcons}
-              actions={[
-                {
-                icon: AddBox,
-                tooltip: 'Add song to Current Playlist',
-                onClick: (event, rowData) => {
-                  console.log(getCurr());
-                  axios.post('http://localhost:3001/addToPlaylist', {
-                    playlistId: getCurr(),
-                    songId: rowData.song_id
-                  }).then(response => {
-                    axios.post('http://localhost:3001/indivList', {
-                    playlistId: getCurr(),
-                  }).then(response => {
-                    setDataIndiv(response.data)
-                  }).catch(error=>{
-                    console.log(error)
-                  })
-                  }).catch(error=>{
-                  })
-                }
-              }
-            ]}
-            />
+          <Grid item xs={3}>
           </Grid>
         </Grid>
     </div>
