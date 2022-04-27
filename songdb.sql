@@ -50,7 +50,9 @@ CREATE TABLE `individual_playlist` (
   `song_id` int DEFAULT NULL,
   `list_playlist_id` int NOT NULL,
   KEY `belongs_to` (`list_playlist_id`),
-  CONSTRAINT `belongs_to` FOREIGN KEY (`list_playlist_id`) REFERENCES `list_of_playlists` (`list_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  KEY `contains_song` (`song_id`),
+  CONSTRAINT `belongs_to` FOREIGN KEY (`list_playlist_id`) REFERENCES `list_of_playlists` (`list_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `contains_song` FOREIGN KEY (`song_id`) REFERENCES `song` (`song_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -60,7 +62,7 @@ CREATE TABLE `individual_playlist` (
 
 LOCK TABLES `individual_playlist` WRITE;
 /*!40000 ALTER TABLE `individual_playlist` DISABLE KEYS */;
-INSERT INTO `individual_playlist` VALUES (1,1),(2,1),(3,1),(4,1),(5,1),(6,1),(7,1),(8,1),(9,1),(10,1),(75,2),(45,2),(30,2),(23,2),(99,2),(101,2),(3,3),(19,3),(13,3),(10,3),(8,3),(4,3),(44,3),(50,4),(12,4),(29,4),(26,4),(200,4),(40,4),(5,4),(7,4),(10,4),(11,4),(15,4),(70,5),(71,5),(75,5),(80,5),(91,5),(20,5),(31,5);
+INSERT INTO `individual_playlist` VALUES (2,1),(3,1),(4,1),(5,1),(6,1),(7,1),(8,1),(9,1),(10,1),(75,2),(45,2),(30,2),(23,2),(99,2),(101,2),(3,3),(19,3),(13,3),(10,3),(8,3),(4,3),(44,3),(50,4),(12,4),(29,4),(26,4),(200,4),(40,4),(5,4),(7,4),(10,4),(11,4),(15,4),(70,5),(71,5),(75,5),(80,5),(91,5),(20,5),(31,5),(6,1),(1,1);
 /*!40000 ALTER TABLE `individual_playlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -78,7 +80,7 @@ CREATE TABLE `list_of_playlists` (
   PRIMARY KEY (`list_id`),
   KEY `made_by` (`userID`),
   CONSTRAINT `made_by` FOREIGN KEY (`userID`) REFERENCES `users` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -234,4 +236,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-25 16:36:36
+-- Dump completed on 2022-04-27 12:25:24

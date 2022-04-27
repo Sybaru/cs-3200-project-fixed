@@ -36,11 +36,11 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="All playlists" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton button component="a" href='/rankings'>
       <ListItemIcon>
         <QueueMusicIcon />
       </ListItemIcon>
-      <ListItemText primary="All playlists" />
+      <ListItemText primary="Rankings" />
     </ListItemButton>
   </React.Fragment>
 );

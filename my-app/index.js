@@ -200,3 +200,13 @@ app.post("/allLists", (req, res)=> {
         }
     );
 });
+
+app.post("/ranking", (req, res) => {
+    db.query(
+        "SELECT * FROM ranking as r JOIN song as s ON r.song = s.song_id JOIN artist as a ON a.artist_id = s.artist_id",
+        (err, result) => {
+            if (err) console.log(err);
+            res.send(result);
+        }
+    );
+});

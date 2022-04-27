@@ -6,6 +6,7 @@ import MainPage from "./App/Containers/dashboard"
 import MyPlaylists from './App/Containers/playlistview.js'
 import EditPlaylists from './App/Containers/playlistedit.js'
 import ViewAll from './App/Containers/playlistviewall'
+import RankingPage from './App/Containers/rankingPage'
 
 
 export default class App extends React.Component {
@@ -19,6 +20,7 @@ export default class App extends React.Component {
         <Route path="MyPlaylists" element={<MyPlaylist />} />
         <Route path="EditPlaylists" element={<EditPlaylist />} />
         <Route path="ViewAllLists" element={<ViewAllFunc />} />
+        <Route path="rankings" element={<Ranking />} />
       </Routes>
     </div>
         )
@@ -61,5 +63,12 @@ function ViewAllFunc() {
   return (
     <ViewAll>      
     </ViewAll>
+  )
+} 
+
+function Ranking() {
+  return (
+    <RankingPage>
+    </RankingPage>
   )
 } 
