@@ -10,9 +10,17 @@ import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import SearchIcon from '@mui/icons-material/Search';
 import LogoutIcon from '@mui/icons-material/Logout';
 import axios, { Axios } from 'axios';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const logout = () => {
   axios.post('http://localhost:3001/logout', {
+}).then((response) => {
+  console.log(response);
+});
+};
+
+const deleteAcc = () => {
+  axios.post('http://localhost:3001/deleteAcc', {
 }).then((response) => {
   console.log(response);
 });
@@ -63,6 +71,12 @@ export const secondaryListItems = (
         <LogoutIcon />
       </ListItemIcon>
       <ListItemText primary="Sign out" />
+    </ListItemButton>
+    <ListItemButton button component="a" href='/' onClick={deleteAcc}>
+      <ListItemIcon>
+        <DeleteIcon />
+      </ListItemIcon>
+      <ListItemText style={{color: "red"}} primary="Delete Account" />
     </ListItemButton>
   </React.Fragment>
 );

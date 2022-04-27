@@ -214,3 +214,18 @@ app.post("/ranking", (req, res) => {
 app.post("/logout", (req, res) => {
     setUser(0);
 });
+
+
+app.post("/deleteAcc", (req, res) => {
+    db.query(
+        "DELETE FROM users WHERE userId = ?",
+        [getUser()],
+        (err, result) => {
+            if (err) {
+              res.send({err: err});
+            } 
+            console.log(result)
+            setUser(0);
+        }
+    );
+});
