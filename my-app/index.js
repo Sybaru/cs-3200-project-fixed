@@ -19,6 +19,7 @@ function getUser() {
 app.use(express.json());
 app.use(cors());
 
+// change these values to match yours
 const db = mysql.createConnection({
     user: "root",
     host: "localhost",
