@@ -4,8 +4,8 @@ import Signin from "./App/Containers/signin"
 import Signup from "./App/Containers/signup"
 import MainPage from "./App/Containers/dashboard"
 import MyPlaylists from './App/Containers/playlistview.js'
+import EditPlaylists from './App/Containers/playlistedit.js'
 
-window.user = 0;
 
 export default class App extends React.Component {
     render() {
@@ -16,6 +16,7 @@ export default class App extends React.Component {
         <Route path="register" element={<Signupfunc />} />
         <Route path="main" element={<Mainfunc />} />
         <Route path="MyPlaylists" element={<MyPlaylist />} />
+        <Route path="EditPlaylists" element={<EditPlaylist />} />
       </Routes>
     </div>
         )
@@ -46,3 +47,10 @@ function MyPlaylist() {
     <MyPlaylists></MyPlaylists>
   )
 }
+
+function EditPlaylist() {
+  return (
+    <EditPlaylists>
+    </EditPlaylists>
+  )
+} 

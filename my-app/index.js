@@ -142,3 +142,49 @@ app.post("/allMy", (req, res) => {
         }
     );
 });
+
+app.post("/indivList", (req, res) => {
+    const playlistId = req.body.playlistId;
+
+    db.query(
+        "SELECT * FROM individual_playlist as i LEFT JOIN song as s ON s.song_id = i.song_id JOIN artist as a ON s.artist_id = a.artist_id WHERE list_playlist_id = ?",
+        [playlistId],
+        (err, result) => {
+            if (err) console.log(err);
+            console.log(result);
+            res.send(result);
+        }
+    );
+});
+
+app.post("/addToPlaylist", (req, res)=> {
+    const playlistId = req.body.playlistId;
+    const songId = req.body.songId
+
+    db.query(
+        "INSERT INTO individual_playlist (song_id, list_playlist_id) VALUES (?,?)",
+        [songId, playlistId],
+        (err, result) => {
+            if (err) {
+              res.send({err: err});
+            } 
+            res.send(result);
+        }
+    );
+});
+
+app.post("/deleteSong", (req, res)=> {
+    const playlistId = req.body.playlistId;
+    const songId = req.body.songId
+
+    db.query(
+        "DELETE FROM individual_playlist WHERE song_id = ? AND list_playlist_id = ?",
+        [songId, playlistId],
+        (err, result) => {
+            if (err) {
+              res.send({err: err});
+            } 
+            res.send(result);
+        }
+    );
+});

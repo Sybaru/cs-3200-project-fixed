@@ -54,7 +54,6 @@ export default function Table() {
       { title: "Duration", field: "song_length" },
       { title: "Artist", field: "artist_name" },
       { title: "Record Label", field: "label_name"},
-     
     ]
 
     useEffect(() => {

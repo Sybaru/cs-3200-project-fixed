@@ -22,9 +22,9 @@ export const mainListItems = (
       <ListItemIcon>
         <PlaylistAddIcon />
       </ListItemIcon>
-      <ListItemText primary="Create Playlist" />
+      <ListItemText primary="My Playlists" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton button component="a" href='/EditPlaylists'>
       <ListItemIcon>
         <CreateIcon />
       </ListItemIcon>
