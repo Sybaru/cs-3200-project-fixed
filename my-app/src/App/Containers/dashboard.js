@@ -23,7 +23,7 @@ window.onload = function() {
   axios.post('http://localhost:3001/checkLogin')
   .then((response) => {
     console.log(response.data);
-  if (!response.data && window.location.href != '/') {
+  if (!response.data && (window.location.pathname != '/' && window.location.pathname != '/register')) {
     window.location.href = '/'
   }});
 }

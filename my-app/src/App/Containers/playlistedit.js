@@ -65,14 +65,6 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const mdTheme = createTheme();
 
-window.onload = function() {
-  axios.post('http://localhost:3001/checkLogin')
-  .then((response) => {
-    console.log(response.data);
-  if (!response.data && window.location.href != '/') {
-    window.location.href = '/'
-  }});
-}
 
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);

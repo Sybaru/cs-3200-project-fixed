@@ -65,9 +65,8 @@ app.post('/login', (req, res)=> {
               res.send({err: err});
             } 
 
-            setUser(result[0].userId);
-
             if (result.length > 0) {
+                setUser(result[0].userId);
                 res.send(result);
             } else {
                 res.send({message: "Username/Password is incorrect"});
@@ -210,4 +209,8 @@ app.post("/ranking", (req, res) => {
             res.send(result);
         }
     );
+});
+
+app.post("/logout", (req, res) => {
+    setUser(0);
 });

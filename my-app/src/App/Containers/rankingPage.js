@@ -19,14 +19,6 @@ import axios, { Axios } from 'axios';
 
 const drawerWidth = 240;
 
-window.onload = function() {
-  axios.post('http://localhost:3001/checkLogin')
-  .then((response) => {
-    console.log(response.data);
-  if (!response.data && window.location.href != '/') {
-    window.location.href = '/'
-  }});
-}
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',

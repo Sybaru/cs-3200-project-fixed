@@ -5,10 +5,18 @@ import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import ListIcon from '@mui/icons-material/List';
 import QueueMusicIcon from '@mui/icons-material/QueueMusic';
-import AssignmentIcon from '@mui/icons-material/Assignment';
 import CreateIcon from '@mui/icons-material/Create';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import SearchIcon from '@mui/icons-material/Search';
+import LogoutIcon from '@mui/icons-material/Logout';
+import axios, { Axios } from 'axios';
+
+const logout = () => {
+  axios.post('http://localhost:3001/logout', {
+}).then((response) => {
+  console.log(response);
+});
+};
 
 export const mainListItems = (
   <React.Fragment>
@@ -48,25 +56,13 @@ export const mainListItems = (
 export const secondaryListItems = (
   <React.Fragment>
     <ListSubheader component="div" inset>
-      Saved reports
+      Options
     </ListSubheader>
-    <ListItemButton>
+    <ListItemButton button component="a" href='/' onClick={logout}>
       <ListItemIcon>
-        <AssignmentIcon />
+        <LogoutIcon />
       </ListItemIcon>
-      <ListItemText primary="more" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="options" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="here" />
+      <ListItemText primary="Sign out" />
     </ListItemButton>
   </React.Fragment>
 );
