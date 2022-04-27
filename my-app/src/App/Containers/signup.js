@@ -14,9 +14,7 @@ import axios, { Axios } from 'axios';
 
 const theme = createTheme();
 
-window.onload = function() {
-  console.log(test);
-}
+
 
 function SignUp() {
   const [usernameReg, setUsernameReg] = React.useState("");
