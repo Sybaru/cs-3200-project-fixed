@@ -66,7 +66,7 @@ const login = () => {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Username"
               name="email"
               autoComplete="email"
               onChange={(e) => {setUsername(e.target.value)}}
