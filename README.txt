@@ -1,5 +1,6 @@
 # cs-3200-project
-requires nodejs
+requires nodejs 16.14.02 or higher 
+Please use windows
 
 
 Import the songdb database dump into your mysql database
