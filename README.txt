@@ -2,6 +2,7 @@
 requires nodejs 16.14.02 or higher 
 Please use windows
 
+This project implements CRUD operations on a music database.
 
 Import the songdb database dump into your mysql database
 
